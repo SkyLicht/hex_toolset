@@ -1,0 +1,46 @@
+2025-08-27T13:08:31-06:00 [INFO] sfc_api_production | Fetching minute data at 13:08:31 for 27-Aug-2025 13:07
+2025-08-27T13:08:31-06:00 [INFO] sfc_api_production | Requesting: https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=13&minute=07
+2025-08-27T13:08:31-06:00 [INFO] sfc_api_production | HTTP GET start url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=13&minute=07
+2025-08-27T13:08:31-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=13&minute=07 status=200 duration=257.1342ms bytes=39466
+2025-08-27T13:08:31-06:00 [INFO] sfc_api_production | Successfully fetched 87 records for 27-Aug-2025 13:07
+2025-08-27T13:18:33-06:00 [INFO] sfc_api_production | Fetching minute data at 13:18:33 for 27-Aug-2025 13:17
+2025-08-27T13:18:34-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=13&minute=17 status=200 duration=212.471ms bytes=34346
+2025-08-27T13:18:34-06:00 [INFO] sfc_api_production | Successfully fetched 76 records for 27-Aug-2025 13:17
+2025-08-27T13:20:07-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=13&minute=19 status=200 duration=229.3421ms bytes=37540
+2025-08-27T13:20:07-06:00 [INFO] sfc_api_production | Successfully fetched 83 records for 27-Aug-2025 13:19
+2025-08-27T14:14:41-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=13 status=200 duration=239.5979ms bytes=39436
+2025-08-27T14:14:41-06:00 [INFO] sfc_api_production | Successfully fetched 87 records for 27-Aug-2025 14:13
+2025-08-27T14:21:41-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=20 status=200 duration=256.102ms bytes=43560
+2025-08-27T14:21:41-06:00 [INFO] sfc_api_production | Successfully fetched 96 records for 27-Aug-2025 14:20
+2025-08-27T14:24:05-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=23 status=200 duration=327.551ms bytes=221201
+2025-08-27T14:24:05-06:00 [INFO] sfc_api_production | Successfully fetched 475 records for 27-Aug-2025 14:23
+2025-08-27T14:28:46-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=27 status=200 duration=241.2518ms bytes=52586
+2025-08-27T14:28:46-06:00 [INFO] sfc_api_production | Successfully fetched 116 records for 27-Aug-2025 14:27
+2025-08-27T14:29:12-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=28 status=200 duration=244.0398ms bytes=44825
+2025-08-27T14:29:12-06:00 [INFO] sfc_api_production | Successfully fetched 99 records for 27-Aug-2025 14:28
+2025-08-27T14:31:22-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=30 status=200 duration=215.8215ms bytes=39974
+2025-08-27T14:31:22-06:00 [INFO] sfc_api_production | Successfully fetched 88 records for 27-Aug-2025 14:30
+2025-08-27T14:34:18-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=33 status=200 duration=212.6841ms bytes=46861
+2025-08-27T14:34:18-06:00 [INFO] sfc_api_production | Successfully fetched 103 records for 27-Aug-2025 14:33
+2025-08-27T14:35:14-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=14&minute=34 status=200 duration=240.6432ms bytes=42308
+2025-08-27T14:35:14-06:00 [INFO] sfc_api_production | Successfully fetched 93 records for 27-Aug-2025 14:34
+2025-08-27T15:17:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=16 status=200 duration=248.2095ms bytes=45558
+2025-08-27T15:17:02-06:00 [INFO] sfc_api_production | Successfully fetched 100 records for 27-Aug-2025 15:16
+2025-08-27T15:18:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=17 status=200 duration=231.9952ms bytes=37228
+2025-08-27T15:18:02-06:00 [INFO] sfc_api_production | Successfully fetched 82 records for 27-Aug-2025 15:17
+2025-08-27T15:19:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=18 status=200 duration=211.383ms bytes=49558
+2025-08-27T15:19:02-06:00 [INFO] sfc_api_production | Successfully fetched 109 records for 27-Aug-2025 15:18
+2025-08-27T15:20:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=19 status=200 duration=194.2252ms bytes=43223
+2025-08-27T15:20:02-06:00 [INFO] sfc_api_production | Successfully fetched 95 records for 27-Aug-2025 15:19
+2025-08-27T15:21:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=20 status=200 duration=189.9839ms bytes=52306
+2025-08-27T15:21:02-06:00 [INFO] sfc_api_production | Successfully fetched 115 records for 27-Aug-2025 15:20
+2025-08-27T15:22:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=21 status=200 duration=234.5208ms bytes=41367
+2025-08-27T15:22:02-06:00 [INFO] sfc_api_production | Successfully fetched 91 records for 27-Aug-2025 15:21
+2025-08-27T15:23:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=22 status=200 duration=217.7691ms bytes=42700
+2025-08-27T15:23:02-06:00 [INFO] sfc_api_production | Successfully fetched 94 records for 27-Aug-2025 15:22
+2025-08-27T15:24:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=23 status=200 duration=170.9518ms bytes=38203
+2025-08-27T15:24:02-06:00 [INFO] sfc_api_production | Successfully fetched 84 records for 27-Aug-2025 15:23
+2025-08-27T15:44:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=43 status=200 duration=224.2781ms bytes=32516
+2025-08-27T15:44:02-06:00 [INFO] sfc_api_production | Successfully fetched 72 records for 27-Aug-2025 15:43
+2025-08-27T15:45:02-06:00 [INFO] sfc_api_production | HTTP GET done url=https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=27-Aug-2025&hour=15&minute=44 status=200 duration=187.039ms bytes=27997
+2025-08-27T15:45:02-06:00 [INFO] sfc_api_production | Successfully fetched 62 records for 27-Aug-2025 15:44

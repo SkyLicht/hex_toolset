@@ -1,0 +1,26 @@
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | Requesting: http://127.0.0.1:55268/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=34
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | HTTP GET start url=http://127.0.0.1:55268/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=34
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | HTTP GET done url=http://127.0.0.1:55268/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=34 status=200 duration=1.0448ms bytes=350
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | Successfully fetched 1 records for 27-Aug-2025 12:34
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | Requesting: http://127.0.0.1:55270/api/getPPIDRecords?date=27-Aug-2025&hour=08
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | HTTP GET start url=http://127.0.0.1:55270/api/getPPIDRecords?date=27-Aug-2025&hour=08
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | HTTP GET done url=http://127.0.0.1:55270/api/getPPIDRecords?date=27-Aug-2025&hour=08 status=200 duration=120.2µs bytes=350
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | Successfully fetched data for 27-Aug-2025 08
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | Fetching minute data at 12:16:28 for 27-Aug-2025 12:15
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | Requesting: http://127.0.0.1:55272/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=15
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | HTTP GET start url=http://127.0.0.1:55272/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=15
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | HTTP GET done url=http://127.0.0.1:55272/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=15 status=200 duration=521.6µs bytes=350
+2025-08-27T12:16:28-06:00 [INFO] sfc_api_production | Successfully fetched 1 records for 27-Aug-2025 12:15
+2025-08-27T12:17:35-06:00 [INFO] sfc_api_production | Fetching minute data at 12:17:35 for 27-Aug-2025 12:16
+2025-08-27T12:17:35-06:00 [INFO] sfc_api_production | Requesting: http://127.0.0.1:60234/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=16
+2025-08-27T12:17:35-06:00 [INFO] sfc_api_production | HTTP GET start url=http://127.0.0.1:60234/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=16
+2025-08-27T12:17:35-06:00 [INFO] sfc_api_production | HTTP GET done url=http://127.0.0.1:60234/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=16 status=200 duration=1.1659ms bytes=350
+2025-08-27T12:17:35-06:00 [INFO] sfc_api_production | Successfully fetched 1 records for 27-Aug-2025 12:16
+2025-08-27T12:18:38-06:00 [INFO] sfc_api_production | Requesting: http://127.0.0.1:60273/api/getPPIDRecords?date=27-Aug-2025&hour=08
+2025-08-27T12:18:38-06:00 [INFO] sfc_api_production | HTTP GET start url=http://127.0.0.1:60273/api/getPPIDRecords?date=27-Aug-2025&hour=08
+2025-08-27T12:18:38-06:00 [INFO] sfc_api_production | HTTP GET done url=http://127.0.0.1:60273/api/getPPIDRecords?date=27-Aug-2025&hour=08 status=200 duration=1.6087ms bytes=350
+2025-08-27T12:18:38-06:00 [INFO] sfc_api_production | Successfully fetched data for 27-Aug-2025 08
+2025-08-27T12:18:45-06:00 [INFO] sfc_api_production | Requesting: http://127.0.0.1:60276/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=34
+2025-08-27T12:18:45-06:00 [INFO] sfc_api_production | HTTP GET start url=http://127.0.0.1:60276/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=34
+2025-08-27T12:18:45-06:00 [INFO] sfc_api_production | HTTP GET done url=http://127.0.0.1:60276/api/getPPIDRecords?date=27-Aug-2025&hour=12&minute=34 status=200 duration=1.6203ms bytes=350
+2025-08-27T12:18:45-06:00 [INFO] sfc_api_production | Successfully fetched 1 records for 27-Aug-2025 12:34
