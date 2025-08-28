@@ -1,2 +1,18 @@
 2025-08-27T15:44:02-06:00 [WARN] loop_manager | Heehhe dddd
 2025-08-27T15:45:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:41:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:41:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:42:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:42:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:43:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:43:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:44:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T11:44:02-06:00 [WARN] loop_manager | Heehhe dddd
+2025-08-28T15:41:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:40:00 -0600 MDT
+2025-08-28T15:42:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:41:00 -0600 MDT
+2025-08-28T15:43:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:42:00 -0600 MDT
+2025-08-28T15:44:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:43:00 -0600 MDT
+2025-08-28T15:45:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:44:00 -0600 MDT
+2025-08-28T15:46:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:45:00 -0600 MDT
+2025-08-28T15:48:02-06:00 [ERROR] loop_manager | Unexpected number of records: 62
+2025-08-28T15:48:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:47:00 -0600 MDT

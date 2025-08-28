@@ -21,8 +21,8 @@ func main() {
 	defer lm.Stop() // ensure loops are stopped on exit
 
 	// Start loops (run in parallel)
-	lm.StartEveryMinute(func(ctx context.Context) {
-		sfcManager.GetCurrentMinuteData()
+	lm.StartEveryMinute(func(ctx context.Context, minute time.Time) {
+		sfcManager.GetCurrentMinute(minute)
 	})
 
 	lm.StartEveryHour(func(ctx context.Context) {

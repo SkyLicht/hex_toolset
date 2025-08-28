@@ -25,10 +25,44 @@ func (lm *LoopsManager) Stop() {
 	lm.wg.Wait()
 }
 
-// StartEveryMinute runs fn every minute, aligned to next exact minute + 2s.
-func (lm *LoopsManager) StartEveryMinute(fn func(context.Context)) {
+// StartEveryMinute runs fn every minute, aligned to next exact minute + 2s,
+// and passes the minute being processed to fn (no overlap; catch-up if behind).
+func (lm *LoopsManager) StartEveryMinute(fn func(context.Context, time.Time)) {
 	start := nextMinutePlus(2 * time.Second)
-	lm.startAlignedPeriodic(fn, start, time.Minute)
+
+	lm.wg.Add(1)
+	go func() {
+		defer lm.wg.Done()
+
+		// wait for the first aligned tick
+		if !lm.waitUntil(start) {
+			return
+		}
+
+		next := start
+		for {
+			// Check cancellation before executing
+			select {
+			case <-lm.ctx.Done():
+				return
+			default:
+			}
+
+			// The minute to process is the previous full minute boundary
+			// relative to the aligned tick time (next).
+			minuteToProcess := next.Add(-time.Minute).Truncate(time.Minute)
+
+			safeCall(func(ctx context.Context) {
+				fn(ctx, minuteToProcess)
+			}, lm.ctx)
+
+			// advance schedule and keep alignment (catch-up if behind)
+			next = next.Add(time.Minute)
+			if !lm.waitUntil(next) {
+				return
+			}
+		}
+	}()
 }
 
 // StartEveryHour runs fn every hour exactly at hh:00:02 (e.g., 01:00:02, 14:00:02).

@@ -240,6 +240,34 @@ func (api *APIClient) RequestPreviousMinute(ctx context.Context) ([]RecordDataCo
 	return result, nil
 }
 
+// RequestMinute RequestPreviousMinute fetches current minute data with automatic retry and jittered backoff
+func (api *APIClient) RequestMinute(ctx context.Context, time time.Time) ([]RecordDataCollector, error) {
+	date, hour, minute := CalculateMinute(1, time)
+
+	//api.logger.Printf("Fetching minute data at %s for %s %02d:%02d",
+	//	time.Now().Format("15:04:05"), date, hour, minute)
+
+	var result []RecordDataCollector
+	var lastErr error
+
+	err := doWithRetry(ctx, MaxRetries, RetryDelay, func() error {
+		data, err := api.RequestMinuteData(ctx, date, hour, minute)
+		if err != nil {
+			lastErr = err
+			api.logger.Printf("Attempt failed: %v", err)
+			return err
+		}
+		result = data
+		return nil
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("all %d attempts failed, last error: %w", MaxRetries, lastErr)
+	}
+
+	return result, nil
+}
+
 // doWithRetry executes fn with retry using jittered backoff.
 // It stops early if the context is done.
 func doWithRetry(ctx context.Context, attempts int, baseDelay time.Duration, fn func() error) error {
