@@ -56,4 +56,5 @@ func (m *SFCAPIManager) GetCurrentMinute(minute time.Time) {
 	//PrintRecordDataCollectors
 
 	m.logger.Warnf("Heehhe %s", minute)
+	m.logger.Warnf("mot %s", minute)
 }
