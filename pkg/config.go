@@ -11,7 +11,10 @@ import (
 
 // Config holds all configuration for the application
 type Config struct {
-	SFC_CLON string
+	SFC_CLON              string
+	SFC_DB_STATUS         string
+	BROADCAST_MESSAGE_DIR string
+	BROADCAST_WS_ADDR     string
 }
 
 var (
@@ -30,7 +33,10 @@ func GetConfig() *Config {
 
 		config = &Config{
 			// Use environment variables or default values
-			SFC_CLON: getEnv("SFC_CLON", ""),
+			SFC_CLON:              getEnv("SFC_CLON", ""),
+			SFC_DB_STATUS:         getEnv("SFC_DB_STATUS", ""),
+			BROADCAST_MESSAGE_DIR: getEnv("BROADCAST_MESSAGE_DIR", "broadcast_messages"),
+			BROADCAST_WS_ADDR:     getEnv("BROADCAST_WS_ADDR", ":8081"),
 		}
 
 		log.Printf("Configuration loaded: %+v", config)

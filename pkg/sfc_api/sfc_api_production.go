@@ -20,8 +20,8 @@ import (
 
 // Configuration constants
 const (
-	HTTPTimeout = 30 * time.Second
-	MaxRetries  = 3
+	HTTPTimeout = 20 * time.Second
+	MaxRetries  = 2
 	RetryDelay  = 5 * time.Second
 )
 
@@ -242,7 +242,7 @@ func (api *APIClient) RequestPreviousMinute(ctx context.Context) ([]RecordDataCo
 
 // RequestMinute RequestPreviousMinute fetches current minute data with automatic retry and jittered backoff
 func (api *APIClient) RequestMinute(ctx context.Context, time time.Time) ([]RecordDataCollector, error) {
-	date, hour, minute := CalculateMinute(1, time)
+	date, hour, minute := CalculateDateHourMinute(1, time)
 
 	//api.logger.Printf("Fetching minute data at %s for %s %02d:%02d",
 	//	time.Now().Format("15:04:05"), date, hour, minute)
@@ -252,6 +252,33 @@ func (api *APIClient) RequestMinute(ctx context.Context, time time.Time) ([]Reco
 
 	err := doWithRetry(ctx, MaxRetries, RetryDelay, func() error {
 		data, err := api.RequestMinuteData(ctx, date, hour, minute)
+		if err != nil {
+			lastErr = err
+			api.logger.Printf("Attempt failed: %v", err)
+			return err
+		}
+		result = data
+		return nil
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("all %d attempts failed, last error: %w", MaxRetries, lastErr)
+	}
+
+	return result, nil
+}
+
+func (api *APIClient) RequestHour(ctx context.Context, t time.Time) ([]RecordDataCollector, error) {
+	// Align to the provided hour and call the hour endpoint with retry, mirroring RequestMinute
+	// Date format must match other requests (CalculateDateHourMinute uses "02-Jan-2006").
+	date := t.Format("02-Jan-2006")
+	hour := t.Hour()
+
+	var result []RecordDataCollector
+	var lastErr error
+
+	err := doWithRetry(ctx, MaxRetries, RetryDelay, func() error {
+		data, err := api.RequestHourData(ctx, date, hour)
 		if err != nil {
 			lastErr = err
 			api.logger.Printf("Attempt failed: %v", err)

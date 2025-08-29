@@ -1,9 +1,9 @@
-package entity
+package entities
 
 import (
 	"database/sql"
 	"fmt"
-	"log"
+	skylogger "hex_toolset/pkg/logger"
 	"strings"
 	"time"
 )
@@ -38,17 +38,22 @@ const (
 type RecordEntityManager struct {
 	TableName string
 	db        *sql.DB
+	logger    *skylogger.Logger
 }
 
 // NewRecordManagerEntity creates a new RecordEntityManager instance
 func NewRecordManagerEntity(db *sql.DB) *RecordEntityManager {
 	if db == nil {
-		log.Fatal("database connection cannot be nil")
+		panic("database connection cannot be nil")
 	}
-
+	lgr, _ := skylogger.New(
+		skylogger.WithName("entities"),
+		skylogger.WithFilePattern("{name}.log"),
+	)
 	return &RecordEntityManager{
 		TableName: tableName,
 		db:        db,
+		logger:    lgr,
 	}
 }
 
@@ -62,18 +67,34 @@ func (rm *RecordEntityManager) CreateTable() error {
 		return fmt.Errorf("failed to create indexes: %v", err)
 	}
 
-	log.Printf("Table %s created successfully with %d indexes", rm.TableName, len(rm.getIndexDefinitions()))
+	if rm.logger != nil {
+		rm.logger.Infof("entity operation \"%s\" \"%s\" \"%s\"", "RecordEntity", "CreateTable", fmt.Sprintf("created %d indexes", len(rm.getIndexDefinitions())))
+	}
 	return nil
+}
+
+func (rm *RecordEntityManager) logEntity(operation, desc, status string) {
+	if rm.logger == nil {
+		return
+	}
+	rm.logger.Infof("entity operation \"%s\" \"%s\" \"%s\"", "RecordEntity", operation+": "+desc, status)
 }
 
 // createMainTable creates the main table structure
 func (rm *RecordEntityManager) createMainTable() error {
 	query := rm.buildCreateTableQuery()
-
+	if rm.logger != nil {
+		rm.logEntity("createMainTable", "CREATE TABLE records_table", "start")
+	}
 	if _, err := rm.db.Exec(query); err != nil {
+		if rm.logger != nil {
+			rm.logEntity("createMainTable", "CREATE TABLE records_table", "error")
+		}
 		return fmt.Errorf("failed to execute CREATE TABLE: %v", err)
 	}
-
+	if rm.logger != nil {
+		rm.logEntity("createMainTable", "CREATE TABLE records_table", "done")
+	}
 	return nil
 }
 
@@ -161,8 +182,17 @@ func (rm *RecordEntityManager) createIndexes() error {
 
 // createSingleIndex creates a single index
 func (rm *RecordEntityManager) createSingleIndex(index IndexDefinition) error {
+	if rm.logger != nil {
+		rm.logEntity("createIndex", index.Name, "start")
+	}
 	if _, err := rm.db.Exec(index.Query); err != nil {
+		if rm.logger != nil {
+			rm.logEntity("createIndex", index.Name, "error")
+		}
 		return fmt.Errorf("failed to execute index query for %s: %v", index.Name, err)
+	}
+	if rm.logger != nil {
+		rm.logEntity("createIndex", index.Name, "done")
 	}
 	return nil
 }
@@ -172,10 +202,14 @@ func (rm *RecordEntityManager) DropTable() error {
 	query := fmt.Sprintf(`DROP TABLE IF EXISTS %s`, rm.TableName)
 
 	if _, err := rm.db.Exec(query); err != nil {
+		if rm.logger != nil {
+			rm.logEntity("dropTable", "DROP TABLE "+rm.TableName, "error")
+		}
 		return fmt.Errorf("failed to drop table %s: %v", rm.TableName, err)
 	}
-
-	log.Printf("Table %s dropped successfully", rm.TableName)
+	if rm.logger != nil {
+		rm.logEntity("dropTable", "DROP TABLE "+rm.TableName, "done")
+	}
 	return nil
 }
 
@@ -202,7 +236,13 @@ func (rm *RecordEntityManager) GetTableInfo() ([]map[string]interface{}, error) 
 
 	rows, err := rm.db.Query(query)
 	if err != nil {
+		if rm.logger != nil {
+			rm.logEntity("getTableInfo", "PRAGMA table_info", "error")
+		}
 		return nil, fmt.Errorf("failed to get table info: %v", err)
+	}
+	if rm.logger != nil {
+		rm.logEntity("getTableInfo", "PRAGMA table_info", "done")
 	}
 	defer rows.Close()
 
@@ -256,7 +296,13 @@ func (rm *RecordEntityManager) InsertBatch(records []RecordEntity) error {
 
 	stmt, err := tx.Prepare(query)
 	if err != nil {
+		if rm.logger != nil {
+			rm.logEntity("insertBatch", "PREPARE INSERT", "error")
+		}
 		return fmt.Errorf("failed to prepare statement: %v", err)
+	}
+	if rm.logger != nil {
+		rm.logEntity("insertBatch", "PREPARE INSERT", "done")
 	}
 	defer stmt.Close()
 
@@ -285,9 +331,37 @@ func (rm *RecordEntityManager) InsertBatch(records []RecordEntity) error {
 
 	// Commit transaction
 	if err := tx.Commit(); err != nil {
+		if rm.logger != nil {
+			rm.logEntity("insertBatch", "COMMIT", "error")
+		}
 		return fmt.Errorf("failed to commit transaction: %v", err)
 	}
+	if rm.logger != nil {
+		rm.logEntity("insertBatch", "COMMIT", "done")
+	}
 
-	log.Printf("Successfully inserted %d records into %s", insertedCount, rm.TableName)
+	if rm.logger != nil {
+		rm.logger.Infof("entity operation \"%s\" \"%s\" \"%s\"", "RecordEntity", "InsertBatch", fmt.Sprintf("inserted %d records", insertedCount))
+	}
+	return nil
+}
+
+func (rm *RecordEntityManager) DeleteRecordRange(start, end string) error {
+
+	query := fmt.Sprintf(`DELETE FROM %s WHERE collected_timestamp BETWEEN ? AND ?`, rm.TableName)
+
+	if rm.logger != nil {
+		rm.logEntity("deleteRange", "DELETE BETWEEN", "start")
+	}
+	_, err := rm.db.Exec(query, start, end)
+	if err != nil {
+		if rm.logger != nil {
+			rm.logEntity("deleteRange", "DELETE BETWEEN", "error")
+		}
+		return fmt.Errorf("failed to delete records: %v", err)
+	}
+	if rm.logger != nil {
+		rm.logEntity("deleteRange", "DELETE BETWEEN", "done")
+	}
 	return nil
 }

@@ -16,7 +16,7 @@ func CalculatePreviousMinute() (string, int, int) {
 }
 
 // minutes can be negative to move forward in time.
-func CalculateMinute(minutes int, at time.Time) (string, int, int) {
+func CalculateDateHourMinute(minutes int, at time.Time) (string, int, int) {
 	target := at.Add(-time.Duration(minutes) * time.Minute)
 	return target.Format("02-Jan-2006"), target.Hour(), target.Minute()
 }

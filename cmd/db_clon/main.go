@@ -2,18 +2,35 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"hex_toolset/pkg/db"
+	"hex_toolset/pkg/managers"
+
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
-
-	"hex_toolset/cmd/db_clon/managers"
 )
 
 func main() {
 	// Root context that cancels on SIGINT/SIGTERM for graceful shutdown
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
+
+	err := db.GetInstance().InitDefault(ctx)
+	if err != nil {
+		fmt.Printf("Error initializing database: %v\n", err)
+		return
+	}
+
+	err = db.GetInstance().HealthCheck(ctx)
+
+	if err != nil {
+		fmt.Printf("Error checking database health: %v\n", err)
+		return
+	}
+
+	fmt.Println("DB initialized")
 
 	// Initialize managers with the long-lived context
 	sfcManager := managers.NewSFCAPIManager(&ctx)
@@ -22,7 +39,7 @@ func main() {
 
 	// Start loops (run in parallel)
 	lm.StartEveryMinute(func(ctx context.Context, minute time.Time) {
-		sfcManager.GetCurrentMinute(minute)
+		sfcManager.RequestMinute(minute)
 	})
 
 	lm.StartEveryHour(func(ctx context.Context) {

@@ -1,4 +1,4 @@
-package entity
+package entities
 
 // IndexDefinition represents an index with its name and query
 type IndexDefinition struct {

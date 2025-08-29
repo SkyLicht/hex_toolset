@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"hex_toolset/pkg/db"
-	"hex_toolset/pkg/db/entity"
+	"hex_toolset/pkg/db/entities"
 	"log"
 	"os"
 	"os/signal"
@@ -26,7 +26,7 @@ func main() {
 
 	dbInstance := db.GetInstance().GetDB()
 
-	recordEntity := entity.NewRecordManagerEntity(dbInstance)
+	recordEntity := entities.NewRecordManagerEntity(dbInstance)
 
 	err := recordEntity.CreateTable()
 	if err != nil {
