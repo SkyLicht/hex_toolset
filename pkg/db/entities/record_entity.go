@@ -105,16 +105,16 @@ func (rm *RecordEntityManager) buildCreateTableQuery() string {
 	builder.WriteString(fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s (`, rm.TableName))
 	builder.WriteString(`
 			id TEXT PRIMARY KEY,
-			ppid TEXT NOT NULL CHECK(length(ppid) <= 23),
-			work_order TEXT NOT NULL CHECK(length(work_order) <= 12),
+			ppid TEXT NOT NULL,
+			work_order TEXT NOT NULL,
 			collected_timestamp DATETIME NOT NULL,
-			employee_name TEXT NOT NULL CHECK(length(employee_name) <= 16),
-			group_name TEXT NOT NULL CHECK(length(group_name) <= 23),
+			employee_name TEXT,
+			group_name TEXT NOT NULL,
 			line_name TEXT NOT NULL CHECK(length(line_name) <= 3),
-			station_name TEXT NOT NULL CHECK(length(station_name) <= 23),
-			model_name TEXT NOT NULL CHECK(length(model_name) <= 5),
+			station_name TEXT NOT NULL,
+			model_name TEXT NOT NULL,
 			error_flag INTEGER NOT NULL DEFAULT 0,
-			next_station TEXT CHECK(length(next_station) <= 16),
+			next_station TEXT,
 			
 			-- Composite unique constraint with conflict resolution
 			UNIQUE(ppid, collected_timestamp, line_name, station_name, group_name) ON CONFLICT IGNORE
@@ -351,17 +351,17 @@ func (rm *RecordEntityManager) DeleteRecordRange(start, end string) error {
 	query := fmt.Sprintf(`DELETE FROM %s WHERE collected_timestamp BETWEEN ? AND ?`, rm.TableName)
 
 	if rm.logger != nil {
-		rm.logEntity("deleteRange", "DELETE BETWEEN", "start")
+		rm.logEntity("deleteRange", fmt.Sprintf("DELETE BETWEEN %s AND %s", start, end), "start")
 	}
 	_, err := rm.db.Exec(query, start, end)
 	if err != nil {
 		if rm.logger != nil {
-			rm.logEntity("deleteRange", "DELETE BETWEEN", "error")
+			rm.logEntity("deleteRange", fmt.Sprintf("DELETE BETWEEN %s AND %s", start, end), "error")
 		}
-		return fmt.Errorf("failed to delete records: %v", err)
+		return fmt.Errorf("failed to delete records between %s and %s: %v", start, end, err)
 	}
 	if rm.logger != nil {
-		rm.logEntity("deleteRange", "DELETE BETWEEN", "done")
+		rm.logEntity("deleteRange", fmt.Sprintf("DELETE BETWEEN %s AND %s", start, end), "done")
 	}
 	return nil
 }

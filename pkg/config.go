@@ -11,10 +11,12 @@ import (
 
 // Config holds all configuration for the application
 type Config struct {
+	SFC_API               string
 	SFC_CLON              string
 	SFC_DB_STATUS         string
 	BROADCAST_MESSAGE_DIR string
 	BROADCAST_WS_ADDR     string
+	LOG_DIR               string
 }
 
 var (
@@ -33,7 +35,9 @@ func GetConfig() *Config {
 
 		config = &Config{
 			// Use environment variables or default values
+			SFC_API:               getEnv("SFC_API", ""),
 			SFC_CLON:              getEnv("SFC_CLON", ""),
+			LOG_DIR:               getEnv("LOG_DIR", "logs"),
 			SFC_DB_STATUS:         getEnv("SFC_DB_STATUS", ""),
 			BROADCAST_MESSAGE_DIR: getEnv("BROADCAST_MESSAGE_DIR", "broadcast_messages"),
 			BROADCAST_WS_ADDR:     getEnv("BROADCAST_WS_ADDR", ":8081"),

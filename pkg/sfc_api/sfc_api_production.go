@@ -166,7 +166,7 @@ func (api *APIClient) RequestMinuteData(ctx context.Context, date string, hour, 
 	// Normalize LineName to extracted J-line code for all records
 	for i := range data {
 		data[i].LineName = ExtractJLineCode(data[i].LineName)
-		data[i].GroupName = strings.ReplaceAll(data[i].NextStations, " ", "_")
+		data[i].GroupName = strings.ReplaceAll(data[i].GroupName, " ", "_")
 		data[i].NextStations = strings.ReplaceAll(data[i].NextStations, " ", "_")
 	}
 
@@ -204,7 +204,7 @@ func (api *APIClient) RequestHourData(ctx context.Context, date string, hour int
 	// Normalize LineName to extracted J-line code for all records
 	for i := range data {
 		data[i].LineName = ExtractJLineCode(data[i].LineName)
-		data[i].GroupName = strings.ReplaceAll(data[i].NextStations, " ", "_")
+		data[i].GroupName = strings.ReplaceAll(data[i].GroupName, " ", "_")
 		data[i].NextStations = strings.ReplaceAll(data[i].NextStations, " ", "_")
 	}
 
@@ -242,7 +242,7 @@ func (api *APIClient) RequestPreviousMinute(ctx context.Context) ([]RecordDataCo
 
 // RequestMinute RequestPreviousMinute fetches current minute data with automatic retry and jittered backoff
 func (api *APIClient) RequestMinute(ctx context.Context, time time.Time) ([]RecordDataCollector, error) {
-	date, hour, minute := CalculateDateHourMinute(1, time)
+	date, hour, minute := CalculateDateHourMinute(0, time)
 
 	//api.logger.Printf("Fetching minute data at %s for %s %02d:%02d",
 	//	time.Now().Format("15:04:05"), date, hour, minute)

@@ -223,7 +223,18 @@ func (m *SFCAPIManager) RequestHour(t time.Time) {
 		return
 	}
 
-	// Insert records into the hour
+	hour, err := m.client.RequestHour(m.ctx, previousHour)
+	if err != nil {
+		return
+	}
+
+	mapRecords, err := recordModelToEntity(hour)
+
+	if err != nil {
+		m.logger.Errorf("Error converting records to entities: %v", err)
+		return
+	}
+	err = m.recordEntity.InsertBatch(mapRecords)
 
 	// successfully got records
 
@@ -259,6 +270,155 @@ func recordModelToEntity(data []sfc_api.RecordDataCollector) ([]entities.RecordE
 		result = append(result, entity)
 	}
 	return result, nil
+}
+
+func (m *SFCAPIManager) LoadDay(ctx context.Context, date string) error {
+	// Parse input date as local time zone, hour-beginning will be 00:00 .. 23:00
+	day, err := time.ParseInLocation("2006-01-02", strings.TrimSpace(date), time.Local)
+	if err != nil {
+		return fmt.Errorf("invalid date %q, expected YYYY-MM-DD: %w", date, err)
+	}
+
+	startOfDay := time.Date(day.Year(), day.Month(), day.Day(), 0, 0, 0, 0, time.Local)
+	var failed int
+	for h := 0; h < 24; h++ {
+		select {
+		case <-ctx.Done():
+			m.logger.Warnf("LoadDay canceled for %s: %v", date, ctx.Err())
+			if failed > 0 {
+				return fmt.Errorf("canceled after %d hour(s) failed: %w", failed, ctx.Err())
+			}
+			return ctx.Err()
+		default:
+		}
+
+		hourStart := startOfDay.Add(time.Duration(h) * time.Hour)
+
+		// 1) Fetch hour data
+		recs, rerr := m.client.RequestHour(ctx, hourStart)
+		if rerr != nil {
+			m.logger.Errorf("RequestHour failed for %s %02d:00: %v", date, h, rerr)
+			failed++
+			continue
+		}
+		if len(recs) == 0 {
+			m.logger.Warnf("No records for %s %02d:00", date, h)
+			continue
+		}
+
+		// Delete records from the hour
+		hourStartDB := hourStart.Format("2006-01-02 15:04:05")
+		hourEndDB := hourStart.Add(time.Hour).Format("2006-01-02 15:04:05")
+
+		err = m.recordEntity.DeleteRecordRange(hourStartDB, hourEndDB)
+		if err != nil {
+			m.logger.Errorf("DeleteRecordRange failed for %s %02d:00: %v", date, h, err)
+			failed++
+			continue
+		}
+		// 2) Map to entities
+		mapRecords, merr := recordModelToEntity(recs)
+		if merr != nil {
+			m.logger.Errorf("Mapping records failed for %s %02d:00: %v", date, h, merr)
+			failed++
+			continue
+		}
+
+		// 3) Persist
+		if ierr := m.recordEntity.InsertBatch(mapRecords); ierr != nil {
+			m.logger.Errorf("InsertBatch failed for %s %02d:00: %v", date, h, ierr)
+			failed++
+			continue
+		}
+
+		m.logger.Infof("Loaded %d records for %s %02d:00", len(mapRecords), date, h)
+	}
+
+	if failed > 0 {
+		return fmt.Errorf("completed with %d hour(s) failed for %s", failed, date)
+	}
+	return nil
+}
+
+func (m *SFCAPIManager) LoadRangeOfDays(ctx context.Context, start string, finish string) error {
+	startDay, err := time.ParseInLocation("2006-01-02", strings.TrimSpace(start), time.Local)
+	if err != nil {
+		return fmt.Errorf("invalid start date %q, expected YYYY-MM-DD: %w", start, err)
+	}
+	endDay, err := time.ParseInLocation("2006-01-02", strings.TrimSpace(finish), time.Local)
+	if err != nil {
+		return fmt.Errorf("invalid finish date %q, expected YYYY-MM-DD: %w", finish, err)
+	}
+	if endDay.Before(startDay) {
+		return fmt.Errorf("finish date %s is before start date %s", finish, start)
+	}
+
+	var failed int
+	for d := startDay; !d.After(endDay); d = d.AddDate(0, 0, 1) {
+		if err := m.LoadDay(ctx, d.Format("2006-01-02")); err != nil {
+			m.logger.Errorf("LoadDay error for %s: %v", d.Format("2006-01-02"), err)
+			failed++
+			// continue to next day, aggregating failures
+		}
+	}
+	if failed > 0 {
+		return fmt.Errorf("range load completed with %d day(s) failed", failed)
+	}
+	return nil
+}
+
+// LoadHour loads a single hour given "YYYY-MM-DD HH" (e.g., "2025-08-29 15").
+func (m *SFCAPIManager) LoadHour(dateHour string) error {
+	s := strings.TrimSpace(dateHour)
+	if s == "" {
+		return fmt.Errorf("dateHour is required in format YYYY-MM-DD HH")
+	}
+	t, err := time.ParseInLocation("2006-01-02 15", s, time.Local)
+	if err != nil {
+		return fmt.Errorf("invalid dateHour %q, expected YYYY-MM-DD HH: %w", s, err)
+	}
+	hourStart := time.Date(t.Year(), t.Month(), t.Day(), t.Hour(), 0, 0, 0, time.Local)
+
+	// Fetch hour data
+	recs, rerr := m.client.RequestHour(m.ctx, hourStart)
+	if rerr != nil {
+		m.logger.Errorf("RequestHour failed for %s: %v", s, rerr)
+		return rerr
+	}
+	if len(recs) == 0 {
+		m.logger.Warnf("No records for %s", s)
+		// still clear DB range to avoid stale data
+	}
+
+	// Delete records for that hour using "YYYY-MM-DD HH:MM:SS"
+	startStr := hourStart.Format("2006-01-02 15:04:05")
+	endStr := hourStart.Add(time.Hour).Format("2006-01-02 15:04:05")
+	if derr := m.recordEntity.DeleteRecordRange(startStr, endStr); derr != nil {
+		m.logger.Errorf("DeleteRecordRange failed for %s: %v", s, derr)
+		return derr
+	}
+
+	if len(recs) == 0 {
+		// nothing to insert
+		m.logger.Infof("Cleared range for empty hour %s", s)
+		return nil
+	}
+
+	// Map to entities
+	mapRecords, merr := recordModelToEntity(recs)
+	if merr != nil {
+		m.logger.Errorf("Mapping records failed for %s: %v", s, merr)
+		return merr
+	}
+
+	// Persist
+	if ierr := m.recordEntity.InsertBatch(mapRecords); ierr != nil {
+		m.logger.Errorf("InsertBatch failed for %s: %v", s, ierr)
+		return ierr
+	}
+
+	m.logger.Infof("Loaded %d records for hour %s", len(mapRecords), hourStart.Format("2006-01-02 15:00:00"))
+	return nil
 }
 
 func parseErrorFlag(flag string) bool {

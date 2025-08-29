@@ -1,19 +1,3 @@
-2025-08-27T15:44:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-27T15:45:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:41:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:41:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:42:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:42:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:43:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:43:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:44:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T11:44:02-06:00 [WARN] loop_manager | Heehhe dddd
-2025-08-28T15:41:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:40:00 -0600 MDT
-2025-08-28T15:42:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:41:00 -0600 MDT
-2025-08-28T15:43:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:42:00 -0600 MDT
-2025-08-28T15:44:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:43:00 -0600 MDT
-2025-08-28T15:45:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:44:00 -0600 MDT
-2025-08-28T15:46:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:45:00 -0600 MDT
 2025-08-28T15:48:02-06:00 [ERROR] loop_manager | Unexpected number of records: 62
 2025-08-28T15:48:02-06:00 [WARN] loop_manager | Heehhe 2025-08-28 15:47:00 -0600 MDT
 2025-08-28T19:31:10-06:00 [ERROR] loop_manager | Error requesting minute data: all 3 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=28-Aug-2025&hour=19&minute=29": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
@@ -199,3 +183,189 @@
 2025-08-28T22:31:10-06:00 [ERROR] loop_manager | Error requesting minute data: all 3 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=28-Aug-2025&hour=22&minute=29": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
 2025-08-28T22:32:09-06:00 [ERROR] loop_manager | Error requesting minute data: all 3 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=28-Aug-2025&hour=22&minute=30": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
 2025-08-28T22:33:09-06:00 [ERROR] loop_manager | Error requesting minute data: all 3 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=28-Aug-2025&hour=22&minute=31": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T08:30:16-06:00 [INFO] loop_manager | Loaded 9128 records for 2025-08-20 00:00
+2025-08-29T08:30:20-06:00 [INFO] loop_manager | Loaded 10136 records for 2025-08-20 01:00
+2025-08-29T08:30:23-06:00 [INFO] loop_manager | Loaded 8825 records for 2025-08-20 02:00
+2025-08-29T08:30:27-06:00 [INFO] loop_manager | Loaded 8636 records for 2025-08-20 03:00
+2025-08-29T08:30:30-06:00 [INFO] loop_manager | Loaded 8340 records for 2025-08-20 04:00
+2025-08-29T08:30:34-06:00 [INFO] loop_manager | Loaded 11503 records for 2025-08-20 05:00
+2025-08-29T08:30:36-06:00 [INFO] loop_manager | Loaded 5518 records for 2025-08-20 06:00
+2025-08-29T08:30:40-06:00 [ERROR] loop_manager | InsertBatch failed for 2025-08-20 07:00: failed to insert record 7207 (ID: 7abeb50d-bb5b-4c14-8369-bbc081cb1d38): constraint failed: CHECK constraint failed: length(ppid) <= 23 (275)
+2025-08-29T08:30:44-06:00 [INFO] loop_manager | Loaded 9992 records for 2025-08-20 08:00
+2025-08-29T08:30:48-06:00 [INFO] loop_manager | Loaded 9220 records for 2025-08-20 09:00
+2025-08-29T08:30:53-06:00 [INFO] loop_manager | Loaded 11836 records for 2025-08-20 10:00
+2025-08-29T08:30:56-06:00 [INFO] loop_manager | Loaded 8119 records for 2025-08-20 11:00
+2025-08-29T08:31:00-06:00 [INFO] loop_manager | Loaded 9351 records for 2025-08-20 12:00
+2025-08-29T08:31:03-06:00 [INFO] loop_manager | Loaded 8228 records for 2025-08-20 13:00
+2025-08-29T08:31:06-06:00 [INFO] loop_manager | Loaded 7640 records for 2025-08-20 14:00
+2025-08-29T08:31:12-06:00 [INFO] loop_manager | Loaded 14142 records for 2025-08-20 15:00
+2025-08-29T08:31:16-06:00 [INFO] loop_manager | Loaded 9301 records for 2025-08-20 16:00
+2025-08-29T08:31:21-06:00 [INFO] loop_manager | Loaded 11008 records for 2025-08-20 17:00
+2025-08-29T08:31:26-06:00 [INFO] loop_manager | Loaded 10913 records for 2025-08-20 18:00
+2025-08-29T08:31:30-06:00 [INFO] loop_manager | Loaded 9320 records for 2025-08-20 19:00
+2025-08-29T08:31:34-06:00 [INFO] loop_manager | Loaded 9442 records for 2025-08-20 20:00
+2025-08-29T08:31:41-06:00 [INFO] loop_manager | Loaded 16729 records for 2025-08-20 21:00
+2025-08-29T08:31:46-06:00 [INFO] loop_manager | Loaded 11564 records for 2025-08-20 22:00
+2025-08-29T08:31:52-06:00 [INFO] loop_manager | Loaded 13679 records for 2025-08-20 23:00
+2025-08-29T08:48:46-06:00 [INFO] loop_manager | Loaded 9128 records for 2025-08-20 00:00
+2025-08-29T08:48:52-06:00 [INFO] loop_manager | Loaded 10136 records for 2025-08-20 01:00
+2025-08-29T08:48:56-06:00 [INFO] loop_manager | Loaded 8825 records for 2025-08-20 02:00
+2025-08-29T08:49:01-06:00 [INFO] loop_manager | Loaded 8636 records for 2025-08-20 03:00
+2025-08-29T08:49:06-06:00 [INFO] loop_manager | Loaded 8340 records for 2025-08-20 04:00
+2025-08-29T08:49:12-06:00 [INFO] loop_manager | Loaded 11503 records for 2025-08-20 05:00
+2025-08-29T08:49:15-06:00 [INFO] loop_manager | Loaded 5518 records for 2025-08-20 06:00
+2025-08-29T08:49:18-06:00 [ERROR] loop_manager | InsertBatch failed for 2025-08-20 07:00: failed to insert record 7208 (ID: 3390a541-bbd2-4c84-92b9-2f1403857740): constraint failed: CHECK constraint failed: length(ppid) <= 23 (275)
+2025-08-29T08:49:24-06:00 [INFO] loop_manager | Loaded 9992 records for 2025-08-20 08:00
+2025-08-29T08:49:29-06:00 [INFO] loop_manager | Loaded 9220 records for 2025-08-20 09:00
+2025-08-29T08:49:35-06:00 [INFO] loop_manager | Loaded 11836 records for 2025-08-20 10:00
+2025-08-29T08:49:40-06:00 [INFO] loop_manager | Loaded 8119 records for 2025-08-20 11:00
+2025-08-29T08:49:45-06:00 [INFO] loop_manager | Loaded 9351 records for 2025-08-20 12:00
+2025-08-29T08:49:49-06:00 [INFO] loop_manager | Loaded 8228 records for 2025-08-20 13:00
+2025-08-29T08:49:54-06:00 [INFO] loop_manager | Loaded 7640 records for 2025-08-20 14:00
+2025-08-29T08:50:01-06:00 [INFO] loop_manager | Loaded 14142 records for 2025-08-20 15:00
+2025-08-29T08:50:06-06:00 [INFO] loop_manager | Loaded 9301 records for 2025-08-20 16:00
+2025-08-29T08:50:12-06:00 [INFO] loop_manager | Loaded 11008 records for 2025-08-20 17:00
+2025-08-29T08:50:18-06:00 [INFO] loop_manager | Loaded 10913 records for 2025-08-20 18:00
+2025-08-29T08:50:23-06:00 [INFO] loop_manager | Loaded 9320 records for 2025-08-20 19:00
+2025-08-29T08:50:28-06:00 [INFO] loop_manager | Loaded 9442 records for 2025-08-20 20:00
+2025-08-29T08:50:37-06:00 [INFO] loop_manager | Loaded 16729 records for 2025-08-20 21:00
+2025-08-29T08:50:43-06:00 [INFO] loop_manager | Loaded 11564 records for 2025-08-20 22:00
+2025-08-29T08:50:50-06:00 [INFO] loop_manager | Loaded 13679 records for 2025-08-20 23:00
+2025-08-29T11:23:24-06:00 [INFO] loop_manager | Loaded 3729 records for 2025-08-28 00:00
+2025-08-29T11:23:26-06:00 [INFO] loop_manager | Loaded 4471 records for 2025-08-28 01:00
+2025-08-29T11:23:28-06:00 [INFO] loop_manager | Loaded 4426 records for 2025-08-28 02:00
+2025-08-29T11:23:29-06:00 [INFO] loop_manager | Loaded 3892 records for 2025-08-28 03:00
+2025-08-29T11:23:31-06:00 [INFO] loop_manager | Loaded 3901 records for 2025-08-28 04:00
+2025-08-29T11:23:33-06:00 [INFO] loop_manager | Loaded 5601 records for 2025-08-28 05:00
+2025-08-29T11:23:34-06:00 [INFO] loop_manager | Loaded 2260 records for 2025-08-28 06:00
+2025-08-29T11:23:36-06:00 [INFO] loop_manager | Loaded 3743 records for 2025-08-28 07:00
+2025-08-29T11:23:38-06:00 [INFO] loop_manager | Loaded 4182 records for 2025-08-28 08:00
+2025-08-29T11:23:39-06:00 [INFO] loop_manager | Loaded 2256 records for 2025-08-28 09:00
+2025-08-29T11:23:40-06:00 [INFO] loop_manager | Loaded 3288 records for 2025-08-28 10:00
+2025-08-29T11:23:42-06:00 [INFO] loop_manager | Loaded 3959 records for 2025-08-28 11:00
+2025-08-29T11:23:44-06:00 [INFO] loop_manager | Loaded 3155 records for 2025-08-28 12:00
+2025-08-29T11:23:45-06:00 [INFO] loop_manager | Loaded 3146 records for 2025-08-28 13:00
+2025-08-29T11:23:47-06:00 [INFO] loop_manager | Loaded 3636 records for 2025-08-28 14:00
+2025-08-29T11:23:49-06:00 [INFO] loop_manager | Loaded 3782 records for 2025-08-28 15:00
+2025-08-29T11:23:52-06:00 [INFO] loop_manager | Loaded 6929 records for 2025-08-28 16:00
+2025-08-29T11:23:55-06:00 [INFO] loop_manager | Loaded 5150 records for 2025-08-28 17:00
+2025-08-29T11:23:58-06:00 [INFO] loop_manager | Loaded 3433 records for 2025-08-28 18:00
+2025-08-29T11:24:01-06:00 [INFO] loop_manager | Loaded 4968 records for 2025-08-28 19:00
+2025-08-29T11:24:05-06:00 [INFO] loop_manager | Loaded 5407 records for 2025-08-28 20:00
+2025-08-29T11:24:11-06:00 [INFO] loop_manager | Loaded 10416 records for 2025-08-28 21:00
+2025-08-29T11:24:15-06:00 [INFO] loop_manager | Loaded 5133 records for 2025-08-28 22:00
+2025-08-29T11:24:20-06:00 [INFO] loop_manager | Loaded 7376 records for 2025-08-28 23:00
+2025-08-29T11:31:24-06:00 [INFO] loop_manager | Loaded 3560 records for 2025-08-29 00:00
+2025-08-29T11:31:26-06:00 [INFO] loop_manager | Loaded 3395 records for 2025-08-29 01:00
+2025-08-29T11:31:28-06:00 [INFO] loop_manager | Loaded 4349 records for 2025-08-29 02:00
+2025-08-29T11:31:30-06:00 [INFO] loop_manager | Loaded 4200 records for 2025-08-29 03:00
+2025-08-29T11:31:31-06:00 [INFO] loop_manager | Loaded 2493 records for 2025-08-29 04:00
+2025-08-29T11:31:34-06:00 [INFO] loop_manager | Loaded 5291 records for 2025-08-29 05:00
+2025-08-29T11:31:35-06:00 [INFO] loop_manager | Loaded 3880 records for 2025-08-29 06:00
+2025-08-29T11:31:42-06:00 [INFO] loop_manager | Loaded 15484 records for 2025-08-29 07:00
+2025-08-29T11:31:44-06:00 [INFO] loop_manager | Loaded 4261 records for 2025-08-29 08:00
+2025-08-29T11:31:46-06:00 [INFO] loop_manager | Loaded 3997 records for 2025-08-29 09:00
+2025-08-29T11:31:49-06:00 [INFO] loop_manager | Loaded 5870 records for 2025-08-29 10:00
+2025-08-29T11:31:50-06:00 [INFO] loop_manager | Loaded 2891 records for 2025-08-29 11:00
+2025-08-29T11:31:51-06:00 [WARN] loop_manager | No records for 2025-08-29 12:00
+2025-08-29T11:31:51-06:00 [WARN] loop_manager | No records for 2025-08-29 13:00
+2025-08-29T11:31:51-06:00 [WARN] loop_manager | No records for 2025-08-29 14:00
+2025-08-29T11:31:51-06:00 [WARN] loop_manager | No records for 2025-08-29 15:00
+2025-08-29T11:31:51-06:00 [WARN] loop_manager | No records for 2025-08-29 16:00
+2025-08-29T11:31:51-06:00 [WARN] loop_manager | No records for 2025-08-29 17:00
+2025-08-29T11:31:51-06:00 [WARN] loop_manager | No records for 2025-08-29 18:00
+2025-08-29T11:31:52-06:00 [WARN] loop_manager | No records for 2025-08-29 19:00
+2025-08-29T11:31:52-06:00 [WARN] loop_manager | No records for 2025-08-29 20:00
+2025-08-29T11:31:52-06:00 [WARN] loop_manager | No records for 2025-08-29 21:00
+2025-08-29T11:31:52-06:00 [WARN] loop_manager | No records for 2025-08-29 22:00
+2025-08-29T11:31:52-06:00 [WARN] loop_manager | No records for 2025-08-29 23:00
+2025-08-29T11:44:13-06:00 [INFO] loop_manager | Loaded 3560 records for 2025-08-29 00:00
+2025-08-29T11:44:15-06:00 [INFO] loop_manager | Loaded 3395 records for 2025-08-29 01:00
+2025-08-29T11:44:18-06:00 [INFO] loop_manager | Loaded 4349 records for 2025-08-29 02:00
+2025-08-29T11:44:20-06:00 [INFO] loop_manager | Loaded 4200 records for 2025-08-29 03:00
+2025-08-29T11:44:22-06:00 [INFO] loop_manager | Loaded 2493 records for 2025-08-29 04:00
+2025-08-29T11:44:25-06:00 [INFO] loop_manager | Loaded 5291 records for 2025-08-29 05:00
+2025-08-29T11:44:27-06:00 [INFO] loop_manager | Loaded 3880 records for 2025-08-29 06:00
+2025-08-29T11:44:35-06:00 [INFO] loop_manager | Loaded 15484 records for 2025-08-29 07:00
+2025-08-29T11:44:37-06:00 [INFO] loop_manager | Loaded 4261 records for 2025-08-29 08:00
+2025-08-29T11:44:39-06:00 [INFO] loop_manager | Loaded 3997 records for 2025-08-29 09:00
+2025-08-29T11:44:43-06:00 [INFO] loop_manager | Loaded 5870 records for 2025-08-29 10:00
+2025-08-29T11:44:45-06:00 [INFO] loop_manager | Loaded 3804 records for 2025-08-29 11:00
+2025-08-29T11:44:45-06:00 [WARN] loop_manager | No records for 2025-08-29 12:00
+2025-08-29T11:44:45-06:00 [WARN] loop_manager | No records for 2025-08-29 13:00
+2025-08-29T11:44:45-06:00 [WARN] loop_manager | No records for 2025-08-29 14:00
+2025-08-29T11:44:45-06:00 [WARN] loop_manager | No records for 2025-08-29 15:00
+2025-08-29T11:44:45-06:00 [WARN] loop_manager | No records for 2025-08-29 16:00
+2025-08-29T11:44:45-06:00 [WARN] loop_manager | No records for 2025-08-29 17:00
+2025-08-29T11:44:46-06:00 [WARN] loop_manager | No records for 2025-08-29 18:00
+2025-08-29T11:44:46-06:00 [WARN] loop_manager | No records for 2025-08-29 19:00
+2025-08-29T11:44:46-06:00 [WARN] loop_manager | No records for 2025-08-29 20:00
+2025-08-29T11:44:46-06:00 [WARN] loop_manager | No records for 2025-08-29 21:00
+2025-08-29T11:44:46-06:00 [WARN] loop_manager | No records for 2025-08-29 22:00
+2025-08-29T11:44:46-06:00 [WARN] loop_manager | No records for 2025-08-29 23:00
+2025-08-29T11:47:44-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=46": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:48:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=47": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:49:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=48": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:50:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=49": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:51:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=50": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:52:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=51": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:53:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=52": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:54:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=53": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:55:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=54": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:56:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=55": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:57:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=56": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:58:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=57": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T11:59:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=58": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:00:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=11&minute=59": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:01:44-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=00": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:02:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=01": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:03:25-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=02": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T12:08:37-06:00 [INFO] loop_manager | Loaded 3560 records for 2025-08-29 00:00
+2025-08-29T12:08:39-06:00 [INFO] loop_manager | Loaded 3395 records for 2025-08-29 01:00
+2025-08-29T12:08:42-06:00 [INFO] loop_manager | Loaded 4349 records for 2025-08-29 02:00
+2025-08-29T12:08:45-06:00 [INFO] loop_manager | Loaded 4200 records for 2025-08-29 03:00
+2025-08-29T12:08:46-06:00 [INFO] loop_manager | Loaded 2493 records for 2025-08-29 04:00
+2025-08-29T12:08:49-06:00 [INFO] loop_manager | Loaded 5291 records for 2025-08-29 05:00
+2025-08-29T12:08:52-06:00 [INFO] loop_manager | Loaded 3880 records for 2025-08-29 06:00
+2025-08-29T12:09:00-06:00 [INFO] loop_manager | Loaded 15484 records for 2025-08-29 07:00
+2025-08-29T12:09:02-06:00 [INFO] loop_manager | Loaded 4261 records for 2025-08-29 08:00
+2025-08-29T12:09:05-06:00 [INFO] loop_manager | Loaded 3997 records for 2025-08-29 09:00
+2025-08-29T12:09:08-06:00 [INFO] loop_manager | Loaded 5870 records for 2025-08-29 10:00
+2025-08-29T12:09:11-06:00 [INFO] loop_manager | Loaded 4743 records for 2025-08-29 11:00
+2025-08-29T12:09:11-06:00 [INFO] loop_manager | Loaded 658 records for 2025-08-29 12:00
+2025-08-29T12:09:11-06:00 [WARN] loop_manager | No records for 2025-08-29 13:00
+2025-08-29T12:09:12-06:00 [WARN] loop_manager | No records for 2025-08-29 14:00
+2025-08-29T12:09:12-06:00 [WARN] loop_manager | No records for 2025-08-29 15:00
+2025-08-29T12:09:12-06:00 [WARN] loop_manager | No records for 2025-08-29 16:00
+2025-08-29T12:09:12-06:00 [WARN] loop_manager | No records for 2025-08-29 17:00
+2025-08-29T12:09:12-06:00 [WARN] loop_manager | No records for 2025-08-29 18:00
+2025-08-29T12:09:12-06:00 [WARN] loop_manager | No records for 2025-08-29 19:00
+2025-08-29T12:09:12-06:00 [WARN] loop_manager | No records for 2025-08-29 20:00
+2025-08-29T12:09:13-06:00 [WARN] loop_manager | No records for 2025-08-29 21:00
+2025-08-29T12:09:13-06:00 [WARN] loop_manager | No records for 2025-08-29 22:00
+2025-08-29T12:09:13-06:00 [WARN] loop_manager | No records for 2025-08-29 23:00
+2025-08-29T12:52:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=51": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:53:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=52": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:54:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=53": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:55:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=54": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:56:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=55": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:57:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=56": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:58:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=57": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T12:59:44-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=58": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T13:00:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=12&minute=59": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T13:01:46-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=00": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T13:02:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=01": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T13:03:45-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=02": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2025-08-29T13:04:16-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=03": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:05:05-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=04": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:06:17-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=05": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:07:06-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=06": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:08:17-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=07": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:09:06-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=08": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:10:17-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=09": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:11:04-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=10": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:12:04-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=11": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:13:05-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=12": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:14:16-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=13": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:15:16-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=14": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-08-29T13:16:04-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=15": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host

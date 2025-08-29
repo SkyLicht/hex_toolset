@@ -19,24 +19,32 @@ func main() {
 	if err := db.GetInstance().InitDefault(ctx); err != nil {
 		log.Fatal(err)
 	}
-
 	if err := db.GetInstance().HealthCheck(ctx); err != nil {
 		log.Fatal(err)
 	}
+	defer func() {
+		if err := db.GetInstance().CloseDB(); err != nil {
+			log.Printf("close db error: %v", err)
+		}
+	}()
 
 	dbInstance := db.GetInstance().GetDB()
 
-	recordEntity := entities.NewRecordManagerEntity(dbInstance)
+	if err := entities.NewRecordManagerEntity(dbInstance).CreateTable(); err != nil {
+		log.Fatal(err)
+	}
+	if err := entities.NewLatestPassManager(dbInstance).CreateTable(); err != nil {
+		log.Fatal(err)
+	}
+	// Create triggers
+	if err := (entities.NewTriggersManager(dbInstance)).CreateRecordsPassUpsertTrigger(); err != nil {
+		log.Fatal(err)
+	}
 
-	err := recordEntity.CreateTable()
+	err := db.GetInstance().CloseDB()
 	if err != nil {
 		return
 	}
 
-	err = db.GetDB().Close()
-	if err != nil {
-		return
-	}
 	fmt.Println("DB end")
-
 }
