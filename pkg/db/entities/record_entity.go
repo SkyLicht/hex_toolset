@@ -365,3 +365,61 @@ func (rm *RecordEntityManager) DeleteRecordRange(start, end string) error {
 	}
 	return nil
 }
+
+func (rm *RecordEntityManager) GetLastHour() (map[string]int, error) {
+	// Calculate the previous full hour window: [start, end)
+	now := time.Now().In(time.Local)
+
+	start := time.Date(now.Year(), now.Month(), now.Day(), now.Hour(), 0, 0, 0, time.Local)
+	end := start.Add(+1 * time.Hour)
+
+	startStr := start.Format("2006-01-02 15:04:05")
+	endStr := end.Format("2006-01-02 15:04:05")
+
+	fmt.Println(startStr, endStr)
+
+	// Aggregation query
+	query := fmt.Sprintf(`
+		SELECT 
+			line_name || '_' || group_name AS line_name_group_name,
+			COUNT(ppid) AS units
+		FROM %s
+		WHERE collected_timestamp >= ? 
+		  AND collected_timestamp < ?
+		  AND error_flag = 0
+		GROUP BY line_name, group_name
+		ORDER BY line_name, group_name
+	`, rm.TableName)
+
+	if rm.logger != nil {
+		rm.logEntity("GetLastHour", fmt.Sprintf("window %s to %s", startStr, endStr), "start")
+	}
+
+	rows, err := rm.db.Query(query, startStr, endStr)
+	if err != nil {
+		if rm.logger != nil {
+			rm.logEntity("GetLastHour", "query execution", "error")
+		}
+		return nil, fmt.Errorf("failed to execute last-hour query: %v", err)
+	}
+	defer rows.Close()
+
+	result := make(map[string]int)
+	for rows.Next() {
+		var key string
+		var units int
+		if err := rows.Scan(&key, &units); err != nil {
+			return nil, fmt.Errorf("failed to scan aggregation row: %v", err)
+		}
+		result[key] = units
+	}
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("row iteration error: %v", err)
+	}
+
+	if rm.logger != nil {
+		rm.logEntity("GetLastHour", fmt.Sprintf("window %s to %s", startStr, endStr), "done")
+	}
+
+	return result, nil
+}

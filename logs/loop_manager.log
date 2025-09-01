@@ -369,3 +369,27 @@
 2025-08-29T13:14:16-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=13": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
 2025-08-29T13:15:16-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=14": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
 2025-08-29T13:16:04-06:00 [ERROR] loop_manager | Error requesting minute data: all 2 attempts failed, last error: API request failed: request failed: Get "https://emdii-webtool.foxconn-na.com/api/getPPIDRecords?date=29-Aug-2025&hour=13&minute=15": dial tcp: lookup emdii-webtool.foxconn-na.com: no such host
+2025-09-01T14:13:25-06:00 [INFO] loop_manager | Loaded 88 records for 2025-09-01 00:00
+2025-09-01T14:13:26-06:00 [INFO] loop_manager | Loaded 883 records for 2025-09-01 01:00
+2025-09-01T14:13:27-06:00 [INFO] loop_manager | Loaded 1189 records for 2025-09-01 02:00
+2025-09-01T14:13:29-06:00 [INFO] loop_manager | Loaded 1484 records for 2025-09-01 03:00
+2025-09-01T14:13:31-06:00 [INFO] loop_manager | Loaded 1915 records for 2025-09-01 04:00
+2025-09-01T14:13:33-06:00 [INFO] loop_manager | Loaded 1618 records for 2025-09-01 05:00
+2025-09-01T14:13:35-06:00 [INFO] loop_manager | Loaded 1709 records for 2025-09-01 06:00
+2025-09-01T14:13:51-06:00 [INFO] loop_manager | Loaded 15429 records for 2025-09-01 07:00
+2025-09-01T14:13:56-06:00 [INFO] loop_manager | Loaded 4863 records for 2025-09-01 08:00
+2025-09-01T14:14:01-06:00 [INFO] loop_manager | Loaded 5080 records for 2025-09-01 09:00
+2025-09-01T14:14:06-06:00 [INFO] loop_manager | Loaded 5674 records for 2025-09-01 10:00
+2025-09-01T14:14:11-06:00 [INFO] loop_manager | Loaded 5231 records for 2025-09-01 11:00
+2025-09-01T14:14:17-06:00 [INFO] loop_manager | Loaded 5476 records for 2025-09-01 12:00
+2025-09-01T14:14:21-06:00 [INFO] loop_manager | Loaded 3728 records for 2025-09-01 13:00
+2025-09-01T14:14:22-06:00 [INFO] loop_manager | Loaded 1214 records for 2025-09-01 14:00
+2025-09-01T14:14:22-06:00 [WARN] loop_manager | No records for 2025-09-01 15:00
+2025-09-01T14:14:22-06:00 [WARN] loop_manager | No records for 2025-09-01 16:00
+2025-09-01T14:14:23-06:00 [WARN] loop_manager | No records for 2025-09-01 17:00
+2025-09-01T14:14:23-06:00 [WARN] loop_manager | No records for 2025-09-01 18:00
+2025-09-01T14:14:23-06:00 [WARN] loop_manager | No records for 2025-09-01 19:00
+2025-09-01T14:14:23-06:00 [WARN] loop_manager | No records for 2025-09-01 20:00
+2025-09-01T14:14:23-06:00 [WARN] loop_manager | No records for 2025-09-01 21:00
+2025-09-01T14:14:23-06:00 [WARN] loop_manager | No records for 2025-09-01 22:00
+2025-09-01T14:14:23-06:00 [WARN] loop_manager | No records for 2025-09-01 23:00

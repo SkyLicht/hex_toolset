@@ -417,6 +417,8 @@ func (m *SFCAPIManager) LoadHour(dateHour string) error {
 		return ierr
 	}
 
+	// Create a Broadcast file for the hour data
+
 	m.logger.Infof("Loaded %d records for hour %s", len(mapRecords), hourStart.Format("2006-01-02 15:00:00"))
 	return nil
 }
