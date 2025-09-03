@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// Initialize logger
-	logg, err := logger.New(logger.WithName("broadcast"), logger.WithConsole(true), logger.WithJSON(true))
+	logg, err := logger.New(logger.WithName("broadcast"), logger.WithConsole(true))
 	if err != nil {
 		fmt.Printf("failed to init logger: %v\n", err)
 		return

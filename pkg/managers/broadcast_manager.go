@@ -47,13 +47,19 @@ func (m *BroadcastManager) Run(ctx context.Context) error {
 	// derive internal cancelable context
 	m.ctx, m.cancel = context.WithCancel(ctx)
 
-	dir := m.cfg.BROADCAST_MESSAGE_DIR
-	addr := m.cfg.BROADCAST_WS_ADDR
+	dir := m.cfg.MESSAGE_DIR
+	addr := m.cfg.WS_ADD
+	// Build address using WS_ADD and WS_PORT:
+	// - if WS_ADD is empty -> listen on all interfaces using WS_PORT (":<port>")
+	// - if WS_ADD already contains ":" (host:port or :port) -> use as-is
+	// - otherwise -> append ":" + WS_PORT (host without port -> host:port)
+	if strings.TrimSpace(addr) == "" {
+		addr = ":" + m.cfg.WS_PORT
+	} else if !strings.Contains(addr, ":") {
+		addr = addr + ":" + m.cfg.WS_PORT
+	}
 	if strings.TrimSpace(addr) == "" {
 		addr = ":8081"
-	}
-	if err := ensureDir(dir); err != nil {
-		return fmt.Errorf("ensure dir %s: %w", dir, err)
 	}
 
 	// hub
@@ -66,7 +72,7 @@ func (m *BroadcastManager) Run(ctx context.Context) error {
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte("ok"))
 	})
-	mux.Handle("/ws", ws.WSHandler(m.hub, m.log))
+	mux.Handle("/ws/monitor", ws.WSHandler(m.hub, m.log))
 	m.server = &http.Server{
 		Addr:         addr,
 		Handler:      ws.RecoverMiddleware(mux, m.log),
@@ -139,6 +145,18 @@ func ensureDir(dir string) error {
 	return nil
 }
 
+func deleteWithRetry(path string, attempts int, delay time.Duration) error {
+	for i := 0; i < attempts; i++ {
+		if err := os.Remove(path); err == nil {
+			return nil
+		} else if i == attempts-1 {
+			return err
+		}
+		time.Sleep(delay)
+	}
+	return nil
+}
+
 func (m *BroadcastManager) startWatcher(dir string) error {
 	if err := ensureDir(dir); err != nil {
 		return err
@@ -153,7 +171,7 @@ func (m *BroadcastManager) startWatcher(dir string) error {
 			if r := recover(); r != nil {
 				m.log.Errorf("watcher panic recovered: %v", r)
 			}
-			watcher.Close()
+			_ = watcher.Close()
 			m.wg.Done()
 		}()
 
@@ -168,19 +186,34 @@ func (m *BroadcastManager) startWatcher(dir string) error {
 				}
 				if event.Op&fsnotify.Create == fsnotify.Create {
 					path := event.Name
+
 					// Skip directories
 					if fi, err := os.Stat(path); err == nil && fi.IsDir() {
 						continue
 					}
-					// small delay to allow writers to finish
-					time.Sleep(100 * time.Millisecond)
+
+					// Optional: wait for writer to finish (helps with partial writes)
+					time.Sleep(120 * time.Millisecond)
+
 					content, err := os.ReadFile(path)
 					if err != nil {
 						m.log.Errorf("failed reading created file %s: %v", path, err)
 						continue
 					}
-					m.log.Infof("broadcasting created file: %s (%d bytes)", filepath.Base(path), len(content))
+
+					base := filepath.Base(path)
+					m.log.Infof("broadcasting created file: %s (%d bytes)", base, len(content))
 					m.hub.Broadcast(content)
+
+					// Delete the file after successful broadcast—skip files.json
+					if strings.EqualFold(base, "files.json") {
+						continue
+					}
+					if err := deleteWithRetry(path, 5, 150*time.Millisecond); err != nil {
+						m.log.Errorf("failed to delete %s after broadcast: %v", base, err)
+					} else {
+						m.log.Infof("deleted %s after broadcast", base)
+					}
 				}
 			case err, ok := <-watcher.Errors:
 				if !ok {

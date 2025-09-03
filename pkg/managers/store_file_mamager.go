@@ -4,10 +4,13 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/joho/godotenv"
 )
 
 // StoreFileManager manages saving arbitrary data to JSON files in a directory configured via MESSAGE_DIR.
@@ -25,6 +28,9 @@ type MassageEnvelope struct {
 // NewStoreFileManager creates a manager using MESSAGE_DIR env var.
 // Returns error if MESSAGE_DIR is unset or not writable; will attempt to create the directory if it doesn't exist.
 func NewStoreFileManager() (*StoreFileManager, error) {
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found, using system environment")
+	}
 	dir := os.Getenv("MESSAGE_DIR")
 	if strings.TrimSpace(dir) == "" {
 		return nil, errors.New("environment variable MESSAGE_DIR is not set")
