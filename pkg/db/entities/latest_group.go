@@ -13,7 +13,8 @@ type LatestGroup struct {
 	LineName           string `json:"line_name"            database:"line_name"`
 	GroupName          string `json:"group_name"           database:"group_name"`
 	StationName        string `json:"station_name"         database:"station_name"`
-	ModelName          string `json:"model_name"           database:"model_name"` // <-- added
+	ModelName          string `json:"model_name"           database:"model_name"`
+	NextStation        string `json:"next_station"         database:"next_station"`
 	ErrorFlag          int    `json:"error_flag"           database:"error_flag"`
 }
 
@@ -41,6 +42,7 @@ func (m *LatestGroupManager) CreateTable() error {
 	if m.logger != nil {
 		m.logger.Infof(`entity operation "%s" "%s" "%s"`, "LatestGroup", "CreateTable", "start")
 	}
+
 	create := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s (
   ppid                TEXT PRIMARY KEY,
   work_order          TEXT NOT NULL,
@@ -48,7 +50,8 @@ func (m *LatestGroupManager) CreateTable() error {
   line_name           TEXT NOT NULL,
   group_name          TEXT NOT NULL,
   station_name        TEXT NOT NULL,
-  model_name          TEXT NOT NULL,         -- <-- added
+  model_name          TEXT NOT NULL,
+  next_station        TEXT NOT NULL DEFAULT '',
   error_flag          INTEGER NOT NULL DEFAULT 0
 ) WITHOUT ROWID;`, m.TableName)
 
@@ -57,16 +60,6 @@ func (m *LatestGroupManager) CreateTable() error {
 			m.logger.Errorf("create latest_group table error: %v", err)
 		}
 		return err
-	}
-
-	// --- Backward-compatible migration: add column if table existed already ---
-	// This will no-op if the column already exists.
-	if _, err := m.db.Exec(fmt.Sprintf(
-		`ALTER TABLE %s ADD COLUMN model_name TEXT NOT NULL DEFAULT ''`, m.TableName)); err != nil {
-		// ignore "duplicate column name: model_name"
-		if m.logger != nil {
-			m.logger.Debugf("alter latest_group add model_name (ignore if exists): %v", err)
-		}
 	}
 
 	// Indexes tuned for WIP dashboards & stale detection
@@ -91,6 +84,15 @@ func (m *LatestGroupManager) CreateTable() error {
 	if _, err := m.db.Exec(idx3); err != nil {
 		if m.logger != nil {
 			m.logger.Errorf("create idx_latest_group_line_model_group error: %v", err)
+		}
+		return err
+	}
+
+	// Optional but handy if you’ll query by next step
+	idx4 := fmt.Sprintf(`CREATE INDEX IF NOT EXISTS idx_latest_group_line_next ON %s (line_name, next_station);`, m.TableName)
+	if _, err := m.db.Exec(idx4); err != nil {
+		if m.logger != nil {
+			m.logger.Errorf("create idx_latest_group_line_next error: %v", err)
 		}
 		return err
 	}

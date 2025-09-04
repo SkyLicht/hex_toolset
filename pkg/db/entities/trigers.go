@@ -68,11 +68,18 @@ BEGIN
 
   -- In-process → upsert only if newer timestamp
   INSERT INTO latest_group (
-    ppid, work_order, collected_timestamp, line_name, group_name, station_name, model_name, error_flag
+    ppid, work_order, collected_timestamp, line_name, group_name, station_name, model_name, next_station, error_flag
   )
   SELECT
-    NEW.ppid, NEW.work_order, NEW.collected_timestamp,
-    NEW.line_name, NEW.group_name, NEW.station_name, NEW.model_name, NEW.error_flag
+    NEW.ppid,
+    NEW.work_order,
+    NEW.collected_timestamp,
+    NEW.line_name,
+    NEW.group_name,
+    NEW.station_name,
+    NEW.model_name,
+    COALESCE(NEW.next_station, ''),
+    NEW.error_flag
   WHERE NEW.group_name <> 'IN_STORE'
   ON CONFLICT(ppid) DO UPDATE SET
     work_order          = excluded.work_order,
@@ -81,6 +88,7 @@ BEGIN
     group_name          = excluded.group_name,
     station_name        = excluded.station_name,
     model_name          = excluded.model_name,
+    next_station        = excluded.next_station,
     error_flag          = excluded.error_flag
   WHERE excluded.collected_timestamp > latest_group.collected_timestamp;
 END;`
