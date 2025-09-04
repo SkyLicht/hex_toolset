@@ -85,6 +85,32 @@ func (m *LatestPassManager) Get(lineName, groupName string) (LatestPass, error) 
 	return lp, err
 }
 
+func (m *LatestPassManager) GetMap() (map[string]string, error) {
+	q := fmt.Sprintf(`SELECT line_name || '_' || group_name AS line_group, collected_timestamp FROM %s`, m.TableName)
+
+	rows, err := m.db.Query(q)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	result := make(map[string]string)
+	for rows.Next() {
+		var lineGroup string
+		var collectedTimestamp string
+		if err := rows.Scan(&lineGroup, &collectedTimestamp); err != nil {
+			return nil, err
+		}
+		result[lineGroup] = collectedTimestamp
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
 // DeleteAll removes all rows (utility/testing)
 func (m *LatestPassManager) DeleteAll() error {
 	q := fmt.Sprintf(`DELETE FROM %s`, m.TableName)

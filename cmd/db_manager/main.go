@@ -36,11 +36,16 @@ func main() {
 	if err := entities.NewLatestPassManager(dbInstance).CreateTable(); err != nil {
 		log.Fatal(err)
 	}
+	if err := entities.NewLatestGroupManager(dbInstance).CreateTable(); err != nil {
+		log.Fatal(err)
+	}
 	// Create triggers
 	if err := (entities.NewTriggersManager(dbInstance)).CreateRecordsPassUpsertTrigger(); err != nil {
 		log.Fatal(err)
 	}
-
+	if err := (entities.NewTriggersManager(dbInstance)).CreateRecordsGroupUpsertTrigger(); err != nil {
+		log.Fatal(err)
+	}
 	err := db.GetInstance().CloseDB()
 	if err != nil {
 		return
