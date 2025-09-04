@@ -10,6 +10,7 @@ import (
 	"hex_toolset/pkg/db/entities"
 	skylogger "hex_toolset/pkg/logger"
 	"hex_toolset/pkg/sfc_api"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -23,6 +24,8 @@ type SFCAPIManager struct {
 	client       *sfc_api.APIClient
 	logger       *skylogger.Logger
 	recordEntity *entities.RecordEntityManager
+	lastEntity   *entities.LatestPassManager
+	store        *StoreFileManager
 }
 
 func NewSFCAPIManager(
@@ -41,11 +44,20 @@ func NewSFCAPIManager(
 
 	record := entities.NewRecordManagerEntity(db.GetDB())
 
+	storeManager, err := NewStoreFileManager()
+	if err != nil {
+		log.Fatalf("failed to create StoreFileManager: %v", err)
+	}
+
+	entityManager := entities.NewLatestPassManager(db.GetDB())
+
 	return &SFCAPIManager{
 		client:       sfc_api.NewAPIClient(),
 		ctx:          *ctx,
 		logger:       lgr,
 		recordEntity: record,
+		lastEntity:   entityManager,
+		store:        storeManager,
 	}
 }
 
@@ -188,8 +200,22 @@ func (m *SFCAPIManager) RequestMinute(time time.Time) {
 	}
 
 	// Create a Broadcast file for the minute data
+	// Create a Broadcast file for the hour data
 
-	// successfully got records
+	hour, err := m.recordEntity.GetLastHour()
+	if err != nil {
+		return
+	}
+
+	_, err = m.store.SaveWithTimestampWrapped("minute", "LAST_HOUR", hour)
+
+	latest, err := m.lastEntity.GetMap()
+	if err != nil {
+		log.Fatalf("failed to get latest: %v", err)
+		return
+	}
+
+	_, err = m.store.SaveWithTimestampWrapped("last", "LAST_UPDATE", latest)
 
 }
 
@@ -416,8 +442,6 @@ func (m *SFCAPIManager) LoadHour(dateHour string) error {
 		m.logger.Errorf("InsertBatch failed for %s: %v", s, ierr)
 		return ierr
 	}
-
-	// Create a Broadcast file for the hour data
 
 	m.logger.Infof("Loaded %d records for hour %s", len(mapRecords), hourStart.Format("2006-01-02 15:00:00"))
 	return nil
